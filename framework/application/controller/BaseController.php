@@ -10,7 +10,7 @@ class BaseController {
 	}
 	
 	protected function getDataByPostcode() {
-		
+		$db = \Model\Postcode::getDB();
 	}
 	
 	protected function get404() {
