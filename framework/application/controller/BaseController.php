@@ -40,19 +40,33 @@ class BaseController {
 		
 		$parishSelect = $db->Select("\Model\Parish");
 		$parishSelect->addField("parish", "parishname");
-		$parishSelect->addField("snac", "parishsnac");
+		$parishSelect->addField("snacid", "parishsnac");
 		
 		$select->joinLeft("council", $councilSelect, "code");
 		$select->joinLeft("ward", $wardSelect, "code");
 		$select->joinLeft("county", $countySelect, "code");
-		$select->joinLeft("contituency", $consituencySelect, "code");
+		$select->joinLeft("constituency", $consituencySelect, "code");
 		$select->joinLeft("parish", $parishSelect, "code");
 		
 		$and = $select->getAndFilter();
 		$and->eq("postcode", $postcode);
 		$select->setFilter($and);
 		$select->setLimit(0, 1);
-		return $select->Exec();
+		//echo $select->getSQL();
+		$dbdata = $select->Exec();
+		
+		foreach ($dbdata as $key=>$data) {
+			$dbdata[$key]['geohash'] = $this->getGeoHash($data['lat'], $data['lng']);
+		}
+		return $dbdata;
+	}
+	
+	protected function getGeoHash($lat, $lng) {
+		$ch = curl_init("http://geohash.org?q=$lat,$lng&format=url");
+		curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		return curl_exec($ch);
 	}
 	
 	protected function get404() {
