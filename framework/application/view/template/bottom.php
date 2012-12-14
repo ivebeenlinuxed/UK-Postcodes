@@ -21,8 +21,6 @@
 	
 <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
 <script type="text/javascript" src="/js/home-geocode.js"></script>
-<script type="text/javascript" src="/js/local.js"></script>
-<script type="text/javascript" src="/js/upload.js"></script>
 
 </body>
 </html>

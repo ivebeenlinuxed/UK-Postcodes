@@ -20,10 +20,6 @@
 	
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.js"></script>
 
-<script type="text/javascript" src="/plugins/jquery-ui-1.9.2.custom/js/jquery-ui-1.9.2.custom.min.js"></script>
-<script type="text/javascript" src="/plugins/jsPlumb/jquery.jsPlumb-1.3.16-all.js"></script>
-<link rel="stylesheet" type="text/css" href="/plugins/jquery-ui-1.9.2.custom/css/ui-lightness/jquery-ui-1.9.2.custom.min.css" />
-
 </head>
 <body>
 	<div class="navbar navbar-fixed-top navbar-inverse">
